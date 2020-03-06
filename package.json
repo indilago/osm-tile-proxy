@@ -4,7 +4,8 @@
   "description": "Cache OpenStreetMap tiles",
   "main": "OSMTileProxy.js",
   "scripts": {
-    "start": "ts-node examples/filesystem.ts"
+    "start": "npx ts-node examples/filesystem.ts",
+    "build": "tsc"
   },
   "keywords": [
     "typescript",
@@ -15,7 +16,9 @@
   "license": "Apache 2.0",
   "devDependencies": {
     "@types/lokijs": "^1.5.3",
-    "@types/node": "^12.12.29"
+    "@types/node": "^12.12.29",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "aws-sdk": "^2.634.0",

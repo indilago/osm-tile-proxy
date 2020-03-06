@@ -1,4 +1,3 @@
-import express from 'express'
 import https from 'https'
 import {createServer, IncomingHttpHeaders, IncomingMessage, ServerResponse} from 'http'
 import {PassThrough, Readable} from 'stream'
