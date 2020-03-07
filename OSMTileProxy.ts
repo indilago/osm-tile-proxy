@@ -1,7 +1,6 @@
-import https from 'https'
-import {createServer, IncomingHttpHeaders, IncomingMessage, ServerResponse} from 'http'
+import {createServer, Server, IncomingHttpHeaders, IncomingMessage, ServerResponse} from 'http'
 import {PassThrough, Readable} from 'stream'
-import {RequestOptions} from 'https'
+import https, {RequestOptions} from 'https'
 
 export const TileServers = {
     OpenStreetMap: 'tile.openstreetmap.org',
@@ -61,7 +60,7 @@ export default class OSMTileProxy {
             })
     }
 
-    public start() {
+    public start(): Server {
         const server = createServer((req, res) => {
             const match = /\/([abc])\/(\d{1,2})\/(\d+)\/(\d+)\.png/.exec(req.url)
             if (!match) {
@@ -99,9 +98,10 @@ export default class OSMTileProxy {
 
         server.listen(this.config.port)
         this.log('Started', this.config.tileServer, 'proxy on port', this.config.port)
+        return server
     }
 
-    log(...args: any[]) {
+    private log(...args: any[]) {
         if (this.config.debug) {
             console.log('[OSMTileProxy]', ...args)
         }
